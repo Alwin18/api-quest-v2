@@ -1,10 +1,8 @@
-import VTeams from '@/views/teams'
-import React from 'react'
+import VTeams from "@/views/teams";
+import React from "react";
 
 const Teams = () => {
-  return (
-    <VTeams/>
-  )
-}
+  return <VTeams />;
+};
 
-export default Teams
+export default Teams;

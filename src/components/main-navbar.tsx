@@ -5,8 +5,6 @@ const MainNavbar = () => {
   const route = useRouter();
   const pathName = usePathname();
 
-  console.log(pathName);
-
   return (
     <>
       {pathName === "/" && (
