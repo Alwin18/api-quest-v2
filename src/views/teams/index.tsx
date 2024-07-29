@@ -31,6 +31,7 @@ const VTeams = () => {
             handleClickTeamMenu={method.handleClickTeamMenu}
             handleClickAddTeam={method.handleClickAddTeam}
             handleCreateTeam={method.handleCreateTeam}
+            isShowCreateTeam={data.isShowCreateTeam}
           />
           <VProjects
             handleClickTabs={method.handleClickTabs}

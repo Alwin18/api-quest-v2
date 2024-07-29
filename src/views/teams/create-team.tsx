@@ -32,7 +32,11 @@ const formSchema = z.object({
   icon: z.string().optional(),
 });
 
-function CreateTeam({ handleCreateTeam }: { handleCreateTeam: () => void }) {
+function CreateTeam({
+  handleCreateTeam,
+}: {
+  handleCreateTeam: (icons: string, teamName: string) => void;
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,10 +46,7 @@ function CreateTeam({ handleCreateTeam }: { handleCreateTeam: () => void }) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-    handleCreateTeam();
+    handleCreateTeam(values.icon ?? "", values.team_name ?? "");
   }
 
   return (
@@ -109,7 +110,9 @@ function CreateTeam({ handleCreateTeam }: { handleCreateTeam: () => void }) {
                       Close
                     </Button>
                   </DialogClose>
-                  <Button type="submit">Submit</Button>
+                  <DialogClose>
+                    <Button type="submit">Submit</Button>
+                  </DialogClose>
                 </DialogFooter>
               </form>
             </Form>

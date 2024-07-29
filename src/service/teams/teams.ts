@@ -53,7 +53,7 @@ export function UseTeams() {
     const { data: dataTeams, isLoading: teamLoading, refetch: refetchTeams } = GetTeams(id)
     const { data: dataProjects } = GetProjects(teamsId)
 
-
+    console.log("HAHA", dataTeams);
     useMemo(() => {
         if (dataTeams?.data) {
             setTeamMenu(dataTeams.data.map((item: ITeam, index: number) => {
@@ -108,15 +108,16 @@ export function UseTeams() {
         setIsShowCreateTeam(true)
     }, [])
 
-    const handleCreateTeam = useCallback(() => {
+    const handleCreateTeam = useCallback((icons: string, teamName: string) => {
         postTeams({
-            icon: "",
-            team_name: "Go Slots",
+            icon: icons,
+            team_name: teamName,
             user_id: 8
+        }).then(() => {
+            refetchTeams()
         })
 
         setIsShowCreateTeam(false)
-        refetchTeams()
     }, [])
 
     const handleClickProjects = useCallback((id: number) => {

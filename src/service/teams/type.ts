@@ -5,7 +5,8 @@ export interface IPSidebar {
     teamLoading: boolean
     handleClickTeamMenu: (id: number, name: string) => void
     handleClickAddTeam: () => void,
-    handleCreateTeam: () => void
+    handleCreateTeam: (icons: string, teamName: string) => void
+    isShowCreateTeam: boolean
 }
 
 export interface ITeam {

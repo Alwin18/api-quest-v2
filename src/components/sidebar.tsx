@@ -45,6 +45,7 @@ function Sidebar(props: IPSidebar) {
                       </button>
                     );
                   })}
+
                 <CreateTeam handleCreateTeam={props.handleCreateTeam} />
               </AccordionContent>
             </AccordionItem>

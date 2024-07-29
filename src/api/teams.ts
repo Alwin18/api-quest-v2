@@ -1,10 +1,14 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { IBaseResponse, ICreateTeamRequest } from './type';
 
 const fetchTeams = async (id: number): Promise<IBaseResponse> => {
-    const { data } = await axios.get('http://localhost:9000/api/v1/teams?user_id=' + id);
-    return data;
+    const data = await fetch('http://localhost:9000/api/v1/teams?user_id=' + id, {
+        method: 'GET',
+        cache: 'no-store',
+    });
+
+    return data.json();
 };
 
 export const postTeams = async (payload: ICreateTeamRequest): Promise<IBaseResponse> => {
