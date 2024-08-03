@@ -1,25 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { IBaseResponse, ICreateTeamRequest } from './type';
+import axiosInstance from '@/lib/axiosInstance';
+import { IBaseResponse } from '../types/base-response';
+import { ICreateTeamRequest } from '../types/team';
 
 const fetchTeams = async (id: number): Promise<IBaseResponse> => {
-    const data = await fetch('http://localhost:9000/api/v1/teams?user_id=' + id, {
-        method: 'GET',
-        cache: 'no-store',
-    });
-
-    return data.json();
+  const { data } = await axiosInstance.get(`teams?user_id=${id}`);
+  return data.json();
 };
 
 export const postTeams = async (payload: ICreateTeamRequest): Promise<IBaseResponse> => {
-    const { data } = await axios.post('http://localhost:9000/api/v1/team', payload);
-    return data;
+  const { data } = await axiosInstance.post('team', payload);
+  return data;
 }
 
 export const GetTeams = (id: number) => {
-    return useQuery({
-        queryKey: ['teams', id],
-        queryFn: () => fetchTeams(id),
-        enabled: !!id
-    });
+  return useQuery({
+    queryKey: ['teams', id],
+    queryFn: () => fetchTeams(id),
+    enabled: !!id
+  });
 };

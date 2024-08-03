@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { IBaseResponse } from './type';
+import { IBaseResponse } from '../types/base-response';
+import axiosInstance from '@/lib/axiosInstance';
 
 const fetchProjects = async (id: number): Promise<IBaseResponse> => {
-    const { data } = await axios.get('http://localhost:9000/api/v1/projects?team_id=' + id);
-    return data;
+  const { data } = await axiosInstance.get(`projects?team_id=${id}`);
+  return data;
 };
 
 export const GetProjects = (id: number) => {
-    return useQuery({
-        queryKey: ['projects', id],
-        queryFn: () => fetchProjects(id),
-        enabled: !!id
-    });
+  return useQuery({
+    queryKey: ['projects', id],
+    queryFn: () => fetchProjects(id),
+    enabled: !!id
+  });
 };
